@@ -6,3 +6,7 @@ Website for conducting HORC Elections
 2. Create a virtual environment and install all the dependencies mentioned in requirements.txt
 3. SQLite will be used as the default database during development.
 4. We will move to MySQL or PostgreSQL during production.
+
+#### SuperUser Creds
+username : `admin`, 
+password : `admin123`
