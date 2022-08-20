@@ -1,0 +1,61 @@
+{% load i18n account %}
+<head>
+	<meta charset="utf-8" />
+	<meta
+		name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no"
+	/>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+	<!-- Bootstrap Icons-->
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+		rel="stylesheet"
+	/>
+	<!-- Google fonts-->
+	<link
+		href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700"
+		rel="stylesheet"
+	/>
+	<link
+		href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
+		rel="stylesheet"
+		type="text/css"
+	/>
+	<!-- SimpleLightbox plugin CSS-->
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css"
+		rel="stylesheet"
+	/>
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link
+		rel="stylesheet"
+		href="https://oaf.academic.iiti.ac.in/dist/plugins/jvectormap/jquery-jvectormap-1.2.2.css"
+	/>
+	<link
+		href="https://oaf.academic.iiti.ac.in/public/themes/css/styles.css"
+		rel="stylesheet"
+	/>
+</head>
+
+<body>
+	<div
+		class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center"
+	>
+		<div class="col-lg-8 align-self-end">
+			<h1 class="text-black font-weight-bold">Login With Institute Email ID</h1>
+			<hr class="divider" />
+		</div>
+		<div class="col-lg-8 align-self-baseline">
+			<!--   <p class="text-white-75 mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p> -->
+			<div class="social-auth-links text-center mb-3">
+				<form method="post">
+					{% csrf_token %}
+					<button type="submit" class="btn btn-primary btn-xl">
+						{% trans "Continue" %}
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>

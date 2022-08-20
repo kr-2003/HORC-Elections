@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "allauth.account",  # <--
     "allauth.socialaccount",  # <--
     "allauth.socialaccount.providers.google",
+    "voting.apps.VotingConfig",
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -59,6 +60,10 @@ SOCIALACCOUNT_PROVIDERS = {
             "access_type": "online",
         },
     }
+}
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {
+    'prompt' : 'select_account'
 }
 
 MIDDLEWARE = [
@@ -139,7 +144,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
-
+STATICFILES_DIRS = [Path.joinpath(BASE_DIR.parent, "static")] 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -149,3 +154,5 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 )
+
+SOCIALACCOUNT_FORMS = {'signup': 'voting.forms.MyCustomSocialSignupForm'}
