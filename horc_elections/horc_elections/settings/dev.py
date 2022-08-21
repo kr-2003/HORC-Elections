@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",  # <--
     "allauth.socialaccount.providers.google",
     "voting.apps.VotingConfig",
+    'import_export',
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -145,6 +146,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [Path.joinpath(BASE_DIR.parent, "static")] 
+STATIC_ROOT= Path.joinpath(BASE_DIR.parent,'static_root/')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -154,5 +156,7 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 )
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 SOCIALACCOUNT_FORMS = {'signup': 'voting.forms.MyCustomSocialSignupForm'}
