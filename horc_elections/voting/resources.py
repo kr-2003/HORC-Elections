@@ -17,8 +17,6 @@ class Post_Resource(resources.ModelResource):
         import_id_fields = ("hostel","post_name")
         fields = ("hostel", "post_name","candidates_email")
 
-        
-
 class VoterList_Resource(resources.ModelResource):
     class Meta:
         model = VoterList

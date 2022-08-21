@@ -24,7 +24,7 @@ class Post(models.Model):
 class VoterList(models.Model):
     email = models.EmailField(unique=True, primary_key=True)
     hostel = models.CharField(max_length=20, null=False)
-    voted = models.BooleanField(null=False,default=False)
+    voted = models.BooleanField(null=False, default=False)
 
     def __str__(self):
         return self.email
@@ -36,4 +36,4 @@ class Vote(models.Model):
     vote_casted = models.ForeignKey(Candidate, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.post_id) + "-" +  str(self.user)
+        return f"{self.post_id}-{self.user}"

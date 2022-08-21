@@ -24,6 +24,8 @@ class LoginRequiredMiddleware:
 
         if path == reverse("account_logout").lstrip("/"):
             logout(request)
+            return
 
         if (not request.user.is_authenticated) and (not url_is_exempt):
-            return redirect(settings.LOGIN_URL)
+            print(request.path)
+            return redirect(settings.LOGIN_URL+ "?next=" + request.path)

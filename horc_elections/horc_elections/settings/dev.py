@@ -42,13 +42,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",  # <--
-    "allauth",  # <--
-    "allauth.account",  # <--
-    "allauth.socialaccount",  # <--
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
     "voting.apps.VotingConfig",
-    'import_export',
+    "import_export",
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -59,12 +59,14 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
         "AUTH_PARAMS": {
             "access_type": "online",
+            "prompt": "select_account",
+        },
+        "APP": {
+            "client_id": "927720385643-i5g86fjb1b707vi9rjnnbil4ttimukat.apps.googleusercontent.com",
+            "secret": "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",
+            "key": "",
         },
     }
-}
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {
-    'prompt' : 'select_account'
 }
 
 MIDDLEWARE = [
@@ -76,6 +78,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "horc_elections.middleware.LoginRequiredMiddleware",
+    # "voting.middleware.ManageVotingMiddleware",
 ]
 
 ROOT_URLCONF = "horc_elections.urls"
@@ -145,8 +148,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [Path.joinpath(BASE_DIR.parent, "static")] 
-STATIC_ROOT= Path.joinpath(BASE_DIR.parent,'static_root/')
+STATICFILES_DIRS = [Path.joinpath(BASE_DIR.parent, "static")]
+STATIC_ROOT = Path.joinpath(BASE_DIR.parent, "static_root/")
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -159,4 +162,4 @@ AUTHENTICATION_BACKENDS = (
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 
-SOCIALACCOUNT_FORMS = {'signup': 'voting.forms.MyCustomSocialSignupForm'}
+SOCIALACCOUNT_FORMS = {"signup": "voting.forms.MyCustomSocialSignupForm"}

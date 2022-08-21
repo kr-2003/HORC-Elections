@@ -1,57 +1,59 @@
-import email
+import csv
 from django.shortcuts import render, redirect, reverse
-# from account.views import account_login
-from .models import  Vote, VoterList, Candidate, Post
-
-from django.utils.text import slugify
+from .models import Vote, VoterList, Candidate, Post
 from django.contrib import messages
-from django.conf import settings
-from django.http import JsonResponse, HttpResponse
-import requests
-import json
-# Create your views here.
+from django.http import HttpResponse
+from .middleware import ManageVotingMiddleware
+from django.utils.decorators import decorator_from_middleware
 
+@decorator_from_middleware(ManageVotingMiddleware)
 def index(request):
-
-    user_email = request.user.email
-
-    voter = VoterList.objects.get(email = user_email)
-    if voter.voted:
-        #maybe create a nice page for this or nvm
-        return HttpResponse("<h1>User Already Voted</h1>")
-
+    voter = VoterList.objects.get(email=request.user.email)
     if request.method == "POST":
+        post_ids = Post.objects.filter(hostel=voter.hostel).values_list("id", flat=True)
 
-        post_ids = Post.objects.filter(hostel = voter.hostel).values_list('id', flat=True)
-        
         for post_id in post_ids:
-            vote_casted = request.POST.get(str(post_id))
-
-            print("Creating vote ", user_email, post_id , vote_casted)
-
-            user_obj = VoterList.objects.get(email = user_email)
-            post_id_obj = Post.objects.get(id = post_id)
-            vote_casted_obj = Candidate.objects.get(email = vote_casted)
-
-            print(user_obj,post_id_obj , vote_casted_obj)
-
-            
-            vote = Vote.objects.create(user=user_obj,post_id=post_id_obj,vote_casted=vote_casted_obj)
+            vote_casted = request.POST.get(
+                str(post_id), f"nota_{voter.hostel}@iiti.ac.in"
+            )
+            vote = Vote(user=voter, post_id_id=post_id, vote_casted_id=vote_casted)
             vote.save()
 
-        VoterList.objects.filter(email = user_email).update(voted = True)
-        # voter.update(voted=True)        
-        messages.success(request, "Vote Casted successfully")
+        voter.voted = True
+        voter.save(update_fields=["voted"])
+        messages.success(request, "You have successfully casted your vote")
+        return redirect(reverse("account_logout"))
 
-    posts = Post.objects.filter(hostel = voter.hostel)
-
+    posts = Post.objects.filter(hostel=voter.hostel)
 
     for post in posts:
-        print(type(post),post,post.post_name)
+        print(type(post), post, post.post_name)
 
     context = {
-        "posts" : posts,
-        "page_title" : "HORC Elections",
-        "hostel" : voter.hostel,
+        "posts": posts,
+        "page_title": "HORC Elections",
+        "hostel": voter.hostel,
     }
-    return render(request, "voting/ballot.html" , context)
+    return render(request, "ballot.html", context)
+
+def generateCSV(writer):
+    pass
+
+
+def getResult(request):
+    if not request.user.is_staff:
+        return redirect(reverse("home"))
+
+    if request.method == "POST":
+        response = HttpResponse(
+            content_type="text/csv",
+            headers={"Content-Disposition": 'attachment; filename="results.csv"'},
+        )
+
+        writer = csv.writer(response)
+        generateCSV(writer)
+        # writer.writerow(["First row", "Foo", "Bar", "Baz"])
+        # writer.writerow(["Second row", "A", "B", "C", '"Testing"', "Here's a quote"])
+        return response
+    
+    return render(request, "result.html")
