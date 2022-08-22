@@ -4,9 +4,9 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
-environ.Env.read_env()
+environ.Env.read_env(Path.joinpath(BASE_DIR, '.env'))
 
-SECRET_KEY = "django-insecure-l*$9l_%csd*cm(o_vrdv^*w)-$#$v8#8@xms#sqjzg!pp$-4av"
+SECRET_KEY = env(SECRET_KEY)
 DEBUG = True
 ALLOWED_HOSTS = []
 
@@ -59,11 +59,22 @@ ROOT_URLCONF = "horc_elections.urls"
 WSGI_APPLICATION = "horc_elections.wsgi.application"
 
 DATABASES = {
-    "default": {
+    "local": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
-    }
+    },
+    "heroku": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env("DB_DATABASE"),
+        "USER": env("DB_USER"),
+        "PASSWORD": env("DB_PASSWORD"),
+        "HOST": env("DB_HOST"),
+        "PORT": env("DB_PORT"),
+    },
 }
+
+default_database = env('DJANGO_DATABASE', default='local')
+DATABASES['default'] = DATABASES[default_database]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
