@@ -8,7 +8,7 @@ environ.Env.read_env(Path.joinpath(BASE_DIR, '.env'))
 
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["horc-elections-iiti.herokuapp.com"]
 
 # Application definition
 INSTALLED_APPS = [
