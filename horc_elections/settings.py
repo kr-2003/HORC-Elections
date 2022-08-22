@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -132,4 +133,5 @@ IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [Path.joinpath(BASE_DIR, "static")]
-STATIC_ROOT = Path.joinpath(BASE_DIR, "static_root/")
+STATIC_ROOT = Path.joinpath(BASE_DIR, "staticfiles/")
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
