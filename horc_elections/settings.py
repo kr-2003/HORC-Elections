@@ -8,7 +8,7 @@ environ.Env.read_env(Path.joinpath(BASE_DIR, '.env'))
 
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
-ALLOWED_HOSTS = ["horc-elections-iiti.herokuapp.com"]
+ALLOWED_HOSTS = [env('HOST_URL')]
 
 # Application definition
 INSTALLED_APPS = [
@@ -112,9 +112,9 @@ SOCIALACCOUNT_PROVIDERS = {
             "prompt": "select_account",
         },
         "APP": {
-            "client_id": "927720385643-i5g86fjb1b707vi9rjnnbil4ttimukat.apps.googleusercontent.com",
-            "secret": "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",
-            "key": "",
+            "client_id": env('GOOGLE_OAUTH_CLIENT_ID'),
+            "secret": env('GOOGLE_OAUTH_SECRET'),
+            "key": env('GOOGLE_OAUTH_KEY'),
         },
     }
 }
