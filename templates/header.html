@@ -3,9 +3,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <title>Voting System </title>
+  <title>HORC Elections 2022</title>
+  <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}"">
+  <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="{% static 'plugins/iCheck/all.css' %}"">
   <!-- Font Awesome -->
@@ -38,7 +39,14 @@
     .bold{
       font-weight:bold;
     }
-    
+
+    {% comment %} body{
+      background-image: url({% static 'CVR.jpg' %});
+      background-position : center;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      background-size: cover;
+    } {% endcomment %}
     #candidate_list{
       margin-top:20px;
     }
@@ -49,7 +57,9 @@
 
     #candidate_list ul li{ 
       margin:0 30px 30px 0; 
-      vertical-align:top
+      {% comment %} vertical-align:middle; {% endcomment %}
+      display: flex;
+      align-items: center;
     }
 
     .clist{

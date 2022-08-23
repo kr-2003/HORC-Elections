@@ -3412,12 +3412,16 @@ table.text-center th {
 .register-box-body {
   background: #fff;
   padding: 20px;
-  border-top: 0;
+  /* border-top: 0; */
   color: #666;
+  border : 2px solid #fff;
+  border-radius: 10px;
 }
 .login-box-body .form-control-feedback,
 .register-box-body .form-control-feedback {
   color: #777;
+  border : 2px solid #fff;
+  border-radius: 10px;
 }
 .login-box-msg,
 .register-box-msg {

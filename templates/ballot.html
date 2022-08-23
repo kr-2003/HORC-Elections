@@ -42,10 +42,12 @@
                       <input
                         value={{candidate.email}}
                         type="radio"
+                        id={{post.id}}
                         class="flat-red {{post.post_name}}"
                         name={{post.id}}
-                        required
-                      />
+                        required>
+
+                      {% comment %} <label for={{post.id}} class="candidate-label">{{candidate.name}}</label> {% endcomment %}
                       <span class="cname clist"> {{candidate.name}} </span>
                     </li>
                     {% endfor %}

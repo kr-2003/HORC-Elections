@@ -148,6 +148,7 @@ input[type="radio"] {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
+  vertical-align: middle;
   padding: 0;
 }
 input[type="number"]::-webkit-inner-spin-button,
@@ -2509,7 +2510,9 @@ label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
-  font-weight: bold;
+  /* font-weight: bold; */
+  font-weight: 500;
+  font-size: 20px;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
@@ -2521,6 +2524,7 @@ input[type="checkbox"] {
   margin: 4px 0 0;
   margin-top: 1px \9;
   line-height: normal;
+  vertical-align: middle;
 }
 input[type="file"] {
   display: block;
@@ -2538,6 +2542,7 @@ input[type="radio"]:focus,
 input[type="checkbox"]:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
+  vertical-align: middle;
 }
 output {
   display: block;
@@ -2653,6 +2658,7 @@ input[type="search"] {
   position: absolute;
   margin-top: 4px \9;
   margin-left: -20px;
+  vertical-align: middle;
 }
 .radio + .radio,
 .checkbox + .checkbox {
@@ -2680,6 +2686,7 @@ input[type="checkbox"].disabled,
 fieldset[disabled] input[type="radio"],
 fieldset[disabled] input[type="checkbox"] {
   cursor: not-allowed;
+  vertical-align: middle;
 }
 .radio-inline.disabled,
 .checkbox-inline.disabled,
@@ -2957,6 +2964,7 @@ select[multiple].input-lg {
   .form-inline .checkbox input[type="checkbox"] {
     position: relative;
     margin-left: 0;
+    vertical-align: middle;
   }
   .form-inline .has-feedback .form-control-feedback {
     top: 0;
@@ -3812,6 +3820,7 @@ tbody.collapse.in {
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
+  vertical-align: middle;
 }
 .input-group {
   position: relative;
@@ -3918,6 +3927,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .input-group-addon input[type="radio"],
 .input-group-addon input[type="checkbox"] {
+  vertical-align: middle;
   margin-top: 0;
 }
 .input-group .form-control:first-child,
@@ -4418,6 +4428,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-form .radio input[type="radio"],
   .navbar-form .checkbox input[type="checkbox"] {
+    vertical-align: middle;
     position: relative;
     margin-left: 0;
   }
