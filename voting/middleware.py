@@ -20,7 +20,6 @@ class ManageVotingMiddleware:
         try:
             voter = VoterList.objects.get(email=request.user.email)
         except VoterList.DoesNotExist:
-            print('lol')
             messages.error(request, "User not in the Voter's List")
             return redirect("account_logout")
  
