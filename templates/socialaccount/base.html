@@ -6,7 +6,8 @@
 <head>
   	<meta charset="utf-8">
   	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  	<title>Voting System</title>
+  	<title>HORC Elections 2022</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   	<!-- Tell the browser to be responsive to screen width -->
   	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -38,6 +39,15 @@
   		.mt20{
         margin-top: 20px;
       }
+       body{
+        background-image : linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url({% static 'CVR.jpg' %});
+        background-position : center;
+        background-repeat: no-repeat;
+        margin : 0;
+        background-attachment: fixed;
+        background-size: cover;
+        overflow: hidden; /* Hide scrollbars */
+      }  
       .title{
         font-size: 50px;
       }
@@ -51,7 +61,8 @@
 
       #candidate_list ul li{ 
         margin:0 30px 30px 0; 
-        vertical-align:top
+        display: flex;
+        align-items: center;
       }
 
       .clist{
