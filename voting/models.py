@@ -14,7 +14,7 @@ class Candidate(models.Model):
 
 class Post(models.Model):
     hostel = models.CharField(max_length=20, null=False)
-    post_name = models.CharField(max_length=20, null=False)
+    post_name = models.CharField(max_length=40, null=False)
     candidates = models.ManyToManyField(Candidate)
 
     def __str__(self):
