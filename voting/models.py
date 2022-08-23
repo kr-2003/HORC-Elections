@@ -5,7 +5,7 @@ from django.db import models
 
 class Candidate(models.Model):
     email = models.EmailField(unique=True, primary_key=True)
-    name = models.CharField(max_length=20, null=False)
+    name = models.CharField(max_length=40, null=False)
     hostel = models.CharField(max_length=20, null=False)
 
     def __str__(self):
