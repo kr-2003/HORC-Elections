@@ -10,3 +10,6 @@ Website for conducting HORC Elections
 #### SuperUser Creds
 username : `admin`, 
 password : `admin123`
+
+### Schema
+![drawSQL-horc-elec-export-2023-09-11](https://github.com/DaemonLab/HORC-Elections/assets/72644006/fb77d48f-c859-4236-a59c-540154e84ba1)
